@@ -49,7 +49,7 @@ public class LinkedListOps<D> {
 	head = newNode;
     }
 
-    /** remove first occurrence of elem
+    /** remove all occurrences of elem
      * does nothing if d doesn't exist
      */
     public Node<D> remove(Node<D> head, D d) {
@@ -62,10 +62,29 @@ public class LinkedListOps<D> {
 	    // if next node data is d then remove next node
 	    if (current.getNext().getData() == d) {
 		current.setNext(current.getNext().getNext());
+	    } else {
+		current = current.getNext();
 	    }
-	    current = current.getNext();
 	}
 	return head;
+    }
+
+    /** remove implementation with a helper node
+     */
+    public Node<D> removeH(Node<D> head, D d) {
+	// idea is to treat the first case by adding a previous node to the head
+	Node<D> helper = new Node(d, head);
+	Node<D> current = helper;
+ 	while (current != null && current.getNext() != null) {
+	    // if next node data is d then remove next node
+	    if (current.getNext().getData() == d) {
+		current.setNext(current.getNext().getNext());
+	    } else {
+		current = current.getNext();
+	    }
+	}
+      
+	return helper.getNext();
     }
     
     /** delete duplicates in a linked list
@@ -125,6 +144,22 @@ public class LinkedListOps<D> {
 	System.out.println("Test3, expect 4, gets "+newList.kthElem(4));
 	newList.setHead(newList.remove(newList.getHead(),2));
 	System.out.print("Test4, expect \"1,3,4,5,\", gets ");
+	newList.print();
+	newList.setHead(newList.removeH(newList.getHead(),4));
+	System.out.print("Test5, expect \"1,3,5,\", gets ");
+	newList.print();
+	newList.add(2);
+	newList.add(3);
+	newList.add(5);
+	newList.add(3);
+	newList.add(5);
+	System.out.print("Test6, expect \"5,3,5,3,2,1,3,5,\", gets ");
+	newList.print();
+	newList.setHead(newList.remove(newList.getHead(),3));
+	System.out.print("Test7, expect \"5,5,2,1,5,\", gets ");
+	newList.print();
+	newList.setHead(newList.removeH(newList.getHead(),5));
+	System.out.print("Test8, expect \"2,1,\", gets ");	
 	newList.print();
     }
 
