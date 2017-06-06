@@ -119,10 +119,12 @@ public class LinkedListOps<D> {
 	newList.add(3);
 	newList.add(2);
 	newList.add(1);
+	System.out.print("Test1, expect \"1,2,3,4,5,\", gets ");
 	newList.print();
-	System.out.println("Test1, expect 1, gets "+newList.kthElem(1));
-	System.out.println("Test1, expect 4, gets "+newList.kthElem(4));
+	System.out.println("Test2, expect 1, gets "+newList.kthElem(1));
+	System.out.println("Test3, expect 4, gets "+newList.kthElem(4));
 	newList.setHead(newList.remove(newList.getHead(),2));
+	System.out.print("Test4, expect \"1,3,4,5,\", gets ");
 	newList.print();
     }
 
