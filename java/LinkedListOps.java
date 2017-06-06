@@ -28,11 +28,44 @@ public class LinkedListOps<D> {
 
     public LinkedListOps() {} // default empty constructor for a list
 
+    /** returns the head of a list
+     * used for methods that takes the head node as input instead of the list itself
+     */
+    public Node<D> getHead() {
+	return head;
+    }
+    
+    /** reset the head of a list
+     * used to remove elems, when the head can be removed
+     */
+    public void setHead(Node<D> n) {
+	this.head = n;
+    }
+    
     /** add element to the head of the list
      */
     public void add(D d) {
 	Node<D> newNode = new Node(d, head);
 	head = newNode;
+    }
+
+    /** remove first occurrence of elem
+     * does nothing if d doesn't exist
+     */
+    public Node<D> remove(Node<D> head, D d) {
+	Node<D> current = head;
+	// specific first cases
+	if (current == null) return null;
+	if (current.getData() == d) return current.getNext();
+	// generic case
+	while (current != null && current.getNext() != null) {
+	    // if next node data is d then remove next node
+	    if (current.getNext().getData() == d) {
+		current.setNext(current.getNext().getNext());
+	    }
+	    current = current.getNext();
+	}
+	return head;
     }
     
     /** delete duplicates in a linked list
@@ -89,7 +122,8 @@ public class LinkedListOps<D> {
 	newList.print();
 	System.out.println("Test1, expect 1, gets "+newList.kthElem(1));
 	System.out.println("Test1, expect 4, gets "+newList.kthElem(4));
-
+	newList.setHead(newList.remove(newList.getHead(),2));
+	newList.print();
     }
 
 }
