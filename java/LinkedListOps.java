@@ -126,6 +126,28 @@ public class LinkedListOps<D> {
 	}
 	System.out.println("");
     }
+
+    /** reverse a linked list 1,2,3 becomes 3,2,1
+     * input is list head, returns new head
+     */
+    public Node<D> reverse(Node<D> head) {
+	Node<D> next = null;
+	Node<D> previous = null; // needed for singly linked list
+	Node<D> current = head;
+	// for each node, copy it, link it to previous and move to next one in original list
+	while (current.getNext() != null) {
+	    // save the old next
+	    next = current.getNext();
+	    // set current.next to previous node
+	    current.setNext(previous);
+	    // move to original next node
+	    previous = current;
+	    current = next;
+	}
+	// treats the last element (now first) to not forget to link it
+	current.setNext(previous);
+	return current;
+    }
     
     /** main to test methods
      */
@@ -160,6 +182,9 @@ public class LinkedListOps<D> {
 	newList.print();
 	newList.setHead(newList.removeH(newList.getHead(),5));
 	System.out.print("Test8, expect \"2,1,\", gets ");	
+	newList.print();
+	newList.setHead(newList.reverse(newList.getHead()));
+	System.out.print("Test9, expect \"1,2,\", gets ");	
 	newList.print();
     }
 
