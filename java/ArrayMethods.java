@@ -113,6 +113,8 @@ public class ArrayMethods {
     public static int bsR (String[] strings, String s, int start, int stop) {
 
 	if (debug) System.out.println("rec-searching "+s+"between pos "+start+" and "+stop); 
+	// wrong call case
+	if (start > stop) return -1;
 	
 	// pick middle element, compare it to s, chose which side to search
 	int mid = (stop-start)/2;
@@ -126,7 +128,7 @@ public class ArrayMethods {
 	}
 	else {
 	    // search left
-	    return bsR(strings, s, start, mid);
+	    return bsR(strings, s, start, mid-1); // -1 as mid is not s for sure
 	}
     }
     
@@ -134,7 +136,7 @@ public class ArrayMethods {
      */
     public static int binarySearchAoS (String[] strings, String s) {
 	// treat special cases
-	if (strings.length == 0 || s == "") {
+	if (strings.length == 0 || s == "" || s == null) {
 	    throw new IndexOutOfBoundsException("Wrong input in binary search");
 	}
 	// 1 element array case, if not s then s is not in strings
