@@ -227,7 +227,7 @@ public class ArrayMethods {
 	}
     }
 
-    /** assign second string values to first string value
+    /** assign second string values to first string
      *
      */
     public static void assignAoS(String[] strings1, String[] strings2) {
@@ -260,7 +260,7 @@ public class ArrayMethods {
 	String[] aos3s = {"1","2"};
 	String[] aos4s = {"2","1"};
 	String[] aos5s = {"2","3","1"};
-	// tests for mergesort
+	// tests for mergesort, validated
 	System.out.println("mergesort tests");
 	printAoS(aos2); // size 1 array
 	printAoS(mergesortAoS(aos2));
@@ -278,7 +278,7 @@ public class ArrayMethods {
 	assignAoS(aos3, aos3s);
 	assignAoS(aos4, aos4s);
 	assignAoS(aos5, aos5s);
-	// tests for binary search
+	// tests for binary search, validated
 	System.out.print("searching string 1 in array:");
 	printAoS(aos2);
 	System.out.println("found at position "+binarySearchAoS(aos2,"1"));
@@ -294,7 +294,7 @@ public class ArrayMethods {
 	assignAoS(aos3, aos3s);
 	assignAoS(aos4, aos4s);
 	assignAoS(aos5, aos5s);
-	// tests for quicksort
+	// tests for quicksort, validated
 	System.out.println("quicksort tests");
 	printAoS(aos2); // size 1 array
 	printAoS(quicksortAoS(aos2));
